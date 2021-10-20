@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "paths": {
+            "@containers/*": ["src/containers/index.ts"],
+            "@styles/*": ["src/styles/index.ts"],
+            "@shared/*": ["src/shared/index.ts"],
+            "@utils/*": ["src/utils/index.ts"],
+            "@router/*": ["src/router/index.ts"]
+        }
+    }
+}
