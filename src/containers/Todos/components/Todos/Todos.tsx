@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+//import { getTodos } from "@containers/*";
+
+import React, { useMemo, useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { getTodos } from "../../index";
 
 interface ITodo {
   id: number;
@@ -8,16 +12,12 @@ interface ITodo {
 }
 
 const Todos = () => {
-  const [todos, setTodos] = useState<ITodo[] | undefined>();
+  const data = useSelector(getTodos());
+  console.log(data);
 
-  return (
-    <>
-      {todos?.map(({ text, id }) => (
-        <div key={id}>{text}</div>
-      ))}
-      <h2 className="test">aaaaaaa</h2>
-    </>
-  );
+  useEffect(() => {}, []);
+
+  return null;
 };
 
 export default Todos;
