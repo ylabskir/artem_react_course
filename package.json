@@ -74,7 +74,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.4.1",
-    "react-app-rewire-alias": "^1.1.4",
+    "react-app-rewire-alias": "^1.1.5",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-rational-order": "^0.1.2",

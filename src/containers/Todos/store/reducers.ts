@@ -1,5 +1,6 @@
 import { Reducer as IReducer } from "redux";
 import { todosActionTypes, ITodosState } from "@containers/";
+import { ACTION_FAILURE_REQUEST } from "../../../shared/constants/index";
 
 const initialstate: ITodosState = {
   error: null,
@@ -7,6 +8,8 @@ const initialstate: ITodosState = {
   todos: [],
   todo: null,
 };
+
+// const ACTION_FAILURE_REQUEST = "ACTION_FAILURE_REQUEST";
 
 export const todosReducer: IReducer<ITodosState> = (state: ITodosState = initialstate, action) => {
   switch (action.type) {
@@ -36,11 +39,12 @@ export const todosReducer: IReducer<ITodosState> = (state: ITodosState = initial
     case todosActionTypes.REMOVE_TODO.SUCCESS:
       return { ...state, loading: false, todos: [...state.todos].filter((todo) => todo.id !== action.payload) };
 
-    case todosActionTypes.FETCH_TODOS.FAILURE:
-    case todosActionTypes.FETCH_TODO.FAILURE:
-    case todosActionTypes.ADD_TODO.FAILURE:
-    case todosActionTypes.EDIT_TODO.FAILURE:
-    case todosActionTypes.REMOVE_TODO.FAILURE:
+    // case todosActionTypes.FETCH_TODOS.FAILURE:
+    // case todosActionTypes.FETCH_TODO.FAILURE:
+    // case todosActionTypes.ADD_TODO.FAILURE:
+    // case todosActionTypes.EDIT_TODO.FAILURE:
+    // case todosActionTypes.REMOVE_TODO.FAILURE:
+    case ACTION_FAILURE_REQUEST:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;
