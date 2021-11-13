@@ -1,8 +1,8 @@
 import { Dispatch, AnyAction } from "redux";
 import { todosActionTypes } from "@containers/";
-import { ACTION_FAILURE_REQUEST, IAppSstate } from "@shared/";
+import { ACTION_FAILURE_REQUEST, IAppState } from "@shared/";
 
-export const errorHandlerMiddleware = (data: { getState: () => IAppSstate; dispatch: Dispatch }) => {
+export const errorHandlerMiddleware = (data: { getState: () => IAppState; dispatch: Dispatch }) => {
   const { getState, dispatch } = data;
   return (next: (action: AnyAction) => void) => (action: AnyAction) => {
     const { payload, type } = action;

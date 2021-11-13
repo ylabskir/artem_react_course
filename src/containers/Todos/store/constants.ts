@@ -1,7 +1,7 @@
 import { createActionTypes } from "@utils/";
 
-export const ACTION_TYPES = ["FETCH_TODOS", "FETCH_TODO", "ADD_TODO", "EDIT_TODO", "REMOVE_TODO"];
-export const todosActionTypes = createActionTypes(ACTION_TYPES);
+export const TODOS_ACTION_TYPES = ["FETCH_TODOS", "FETCH_TODO", "ADD_TODO", "EDIT_TODO", "REMOVE_TODO"];
+export const todosActionTypes = createActionTypes(TODOS_ACTION_TYPES);
 
 // const FETCH_TODOS_REQUEST = 'FETCH_TODOS_REQUEST';
 // const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS';

@@ -1,18 +1,23 @@
-import { connectRouter } from "connected-react-router";
+import { connectRouter, RouterState } from "connected-react-router";
 import { combineReducers, CombinedState, AnyAction } from "redux";
 import { History } from "history";
-import { todosReducer } from "../../containers/Todos/store/reducers";
+import { todosReducer, ITodosState, usersReducer, IUsersState } from "@containers/";
+import { IAppState } from "@shared/";
 
-type TReducer = CombinedState<any>;
+type TReducer = CombinedState<IAppState>;
+
+type TRootReducer =
+  | CombinedState<{ todosReducer: ITodosState; usersReducer: IUsersState; router: RouterState<unknown> }>
+  | undefined;
 
 export default (history: History) => {
   const rootReducer = combineReducers({
     todosReducer,
+    usersReducer,
     router: connectRouter(history),
-    // Other reducers
   });
 
   return (state: TReducer | undefined, action: AnyAction) => {
-    return rootReducer(state, action);
+    return rootReducer(state as TRootReducer, action);
   };
 };
