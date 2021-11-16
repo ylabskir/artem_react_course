@@ -1,12 +1,18 @@
 import { Reducer as IReducer } from "redux";
 import { todosActionTypes, ITodosState } from "@containers/";
 import { ACTION_FAILURE_REQUEST } from "../../../shared/constants/index";
+import { EOrder } from "@shared/";
 
 const initialstate: ITodosState = {
   error: null,
   loading: false,
   todos: [],
   todo: null,
+  filterSettings: {
+    search: "",
+    order: EOrder.ASC,
+    //  sortBy: "createAt",
+  },
 };
 
 // const ACTION_FAILURE_REQUEST = "ACTION_FAILURE_REQUEST";
@@ -39,6 +45,8 @@ export const todosReducer: IReducer<ITodosState> = (state: ITodosState = initial
     case todosActionTypes.REMOVE_TODO.SUCCESS:
       return { ...state, loading: false, todos: [...state.todos].filter((todo) => todo.id !== action.payload) };
 
+    case todosActionTypes.TODOS_FILTER.REQUEST:
+      return { ...state, filterSettings: action.payload };
     // case todosActionTypes.FETCH_TODOS.FAILURE:
     // case todosActionTypes.FETCH_TODO.FAILURE:
     // case todosActionTypes.ADD_TODO.FAILURE:

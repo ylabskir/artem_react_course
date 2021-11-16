@@ -1,27 +1,15 @@
-import { takeLatest, call, put } from "redux-saga/effects";
+import { ITodo } from "./interfaces";
+import { takeLatest, call, put, select } from "redux-saga/effects";
 import { todosActionTypes, todosActions } from "@containers/";
-//import * as axios from "axios";
+import axios from "axios";
 
 function* fetchTodosSaga({ _, cb }: ReturnType<any>) {
   try {
-    // const data = yield call(axios.get('/todos'))
+    const { data }: { data: ITodo[] } = yield call(() => axios.get("https://jsonplaceholder.typicode.com/todos"));
 
-    const todos = [
-      {
-        id: 1,
-        text: "Text 001",
-        createAt: new Date(),
-        completed: false,
-      },
-      {
-        id: 2,
-        text: "Text 002",
-        createAt: new Date(),
-        completed: false,
-      },
-    ];
+    // const { search } = yield select((state) => state.todosReducer.filterSettings);
 
-    yield put(todosActions.FETCH_TODOS.SUCCESS(todos));
+    yield put(todosActions.FETCH_TODOS.SUCCESS(data));
   } catch (error) {
     yield put(todosActions.FETCH_TODOS.FAILURE(error as Object));
   } finally {

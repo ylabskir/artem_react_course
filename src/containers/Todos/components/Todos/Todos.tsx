@@ -1,16 +1,37 @@
-//import { getTodos } from "@containers/*";
-
-import React, { useMemo, useRef, useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { getTodos } from "../../index";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTodos, getFilterSettings, todosActions } from "../../index";
 
 const Todos = () => {
-  const data = useSelector(getTodos());
-  console.log(data);
+  const dispatch = useDispatch();
+  const [searchStr, setSearchStr] = useState("");
 
-  useEffect(() => {}, []);
+  const todos = useSelector(getTodos());
+  const filterSettings = useSelector(getFilterSettings());
+  console.log(filterSettings);
 
-  return null;
+  const handleSearch = (e: any) => {
+    const { value } = e.target;
+    setSearchStr(value);
+  };
+
+  // const searchHandler = () => {
+  //   dispatch(
+  //     todosActions.TODOS_FILTER.REQUEST({ ...filterSettings, search: searchStr }, () => {
+  //       dispatch(todosActions.FETCH_TODOS.REQUEST({}));
+  //     }),
+  //   );
+  // };
+
+  return (
+    <div>
+      <input name="search" value={searchStr} onChange={handleSearch} />
+      {/* <button onClick={searchHandler}>Search</button> */}
+      {todos?.map(({ title, id }) => (
+        <div key={id}>{title}</div>
+      ))}
+    </div>
+  );
 };
 
 export default Todos;
